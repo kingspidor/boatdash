@@ -53,7 +53,9 @@ void http_ui_start(void){
 httpd_config_t c = HTTPD_DEFAULT_CONFIG();
 ESP_ERROR_CHECK(httpd_start(&s_server,&c));
 
-
+// Static files from LittleFS
+httpd_uri_t any_static = { .uri = "/*", .method = HTTP_GET, .handler = static_get_handler, .user_ctx = NULL };
+httpd_register_uri_handler(s_server, &any_static);
 
 // Root (optional explicit)
 httpd_uri_t root = { .uri = "/", .method = HTTP_GET, .handler = static_get_handler, .user_ctx = NULL };
@@ -72,9 +74,7 @@ ws.is_websocket = true;
 httpd_register_uri_handler(s_server, &ws);
 #endif
 
-// Static files from LittleFS
-httpd_uri_t any_static = { .uri = "/*", .method = HTTP_GET, .handler = static_get_handler, .user_ctx = NULL };
-httpd_register_uri_handler(s_server, &any_static);
+
 
 
 ESP_LOGI(TAG, "HTTP/UI started");

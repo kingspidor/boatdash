@@ -1,5 +1,3 @@
-@'
 dependencies:
   idf: ">=5.0"
-  espressif/esp_littlefs: "^1"
-'@ | Set-Content -Encoding ascii .\idf_component.yml
+  joltwallet/littlefs: "^1"

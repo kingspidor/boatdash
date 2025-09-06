@@ -1,0 +1,12 @@
+﻿# IDF build
+build/
+managed_components/
+CMakeCache.txt
+cmake-build-*/
+*.pyc
+.vscode/
+.idea/
+.DS_Store
+sdkconfig
+sdkconfig.old
+littlefs_image.bin

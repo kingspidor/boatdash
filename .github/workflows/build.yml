@@ -1,0 +1,17 @@
+﻿name: ci
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: espressif/idf:release-v5.4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: |
+          . /opt/esp/idf/export.sh
+          idf.py set-target esp32s3
+      - name: Build
+        run: |
+          . /opt/esp/idf/export.sh
+          idf.py build
